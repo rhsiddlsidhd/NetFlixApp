@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import apiInstance from "../../utils/api";
+import React from "react";
+
 import { Container } from "../../components/Container/Container";
 import Banner from "./Banner/Banner";
 const Homepage = () => {
