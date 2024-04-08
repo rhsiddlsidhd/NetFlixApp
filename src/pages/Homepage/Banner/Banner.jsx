@@ -15,10 +15,7 @@ const Banner = () => {
   return (
     <div
       style={{
-        backgroundImage:
-          "url(" +
-          `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${data?.results[0].poster_path}` +
-          ")",
+        backgroundImage: `url(https://media.themoviedb.org/t/p/w533_and_h300_bestv2${data?.results[0].poster_path})`,
       }}
       className="banner"
     >
