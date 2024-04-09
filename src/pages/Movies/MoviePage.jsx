@@ -14,7 +14,7 @@ import Pagination from "react-bootstrap/Pagination";
 // https://media.themoviedb.org/t/p/w94_and_h141_bestv2
 
 const MoviePage = () => {
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
   const keyword = query.get("q");
 
   const { data, isError, isLoading, error } = useSearchMovieQuery({ keyword });
