@@ -3,7 +3,6 @@ import "./NotFoundpage.style.css";
 
 const NotFoundpage = () => {
   const imgPath = process.env.REACT_APP_IMAGE_PATH;
-  console.log(imgPath);
 
   return (
     <div className="container">

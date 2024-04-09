@@ -6,21 +6,35 @@ export const MovieCardWrapper = styled.div`
 `;
 
 export const MovieImage = styled.div`
-  width: 220px;
-  height: 340px;
+  height: 80%;
   background-size: cover;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+  &:hover {
+    transform: translateY(-10px);
+    transition: 1s;
+  }
 `;
 
-export const Ranking = styled.h5`
+export const RankingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 15%;
   background: linear-gradient(#000000, transparent);
-  height: 20%;
+  > div:last-child {
+    //연령Badge
+    margin-right: 0.5rem;
+  }
+`;
+
+export const Ranking = styled.div`
   color: #ffffff9b;
   font-weight: bold;
+  font-size: 1.5rem;
+  height: 100%;
   padding: 10px;
 `;
 
@@ -76,9 +90,16 @@ export const Overview = styled.div`
 
 export const MovieIntroduction = styled.div`
   width: 100%;
-  height: 100px;
-
-  .title {
-    width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 `;

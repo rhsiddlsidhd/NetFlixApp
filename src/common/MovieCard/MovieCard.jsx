@@ -4,8 +4,22 @@ import "./MovieCard.style.jsx";
 import * as S from "./MovieCard.style.jsx";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Stack from "react-bootstrap/Stack";
+import { useMoviesGenresQuery } from "../../hooks/useMovieListGenres.js";
 const MovieCard = ({ movie, index }) => {
-  console.log(index);
+  const { data: genreData } = useMoviesGenresQuery();
+
+  const showGenre = (genreIdList) => {
+    if (!genreData) {
+      return [];
+    }
+    const genreNameList = genreIdList.map((id) => {
+      const genreObj = genreData.find((genre) => genre.id === id);
+      return genreObj.name;
+    });
+
+    return genreNameList;
+  };
+
   return (
     <S.MovieCardWrapper>
       <S.MovieImage
@@ -13,7 +27,16 @@ const MovieCard = ({ movie, index }) => {
           backgroundImage: `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path})`,
         }}
       >
-        <S.Ranking>{index + 1}</S.Ranking>
+        <S.RankingContainer>
+          <S.Ranking>{index + 1}</S.Ranking>
+          <div>
+            {movie.adult ? (
+              <Badge bg="danger">18 +</Badge>
+            ) : (
+              <Badge bg="primary">18 - </Badge>
+            )}
+          </div>
+        </S.RankingContainer>
         <S.MovieOverlay>
           {/* 타이틀 평점 장르 설명 인물 */}
           <S.OverlayTitle>
@@ -32,8 +55,12 @@ const MovieCard = ({ movie, index }) => {
             <div className="vote_average">{movie.vote_average.toFixed(2)}</div>
             <div className="vote_counter">({movie.vote_count}명)</div>
           </S.OverlayAverage>
-          <Stack direction="horizontal" gap={1}>
-            {movie.genre_ids.map((id, index) => (
+          <Stack
+            direction="horizontal"
+            gap={1}
+            style={{ width: "100%", flexWrap: "wrap" }}
+          >
+            {showGenre(movie.genre_ids).map((id, index) => (
               <Badge className="badge" bg="danger" key={index}>
                 {id}
               </Badge>
@@ -43,13 +70,7 @@ const MovieCard = ({ movie, index }) => {
         </S.MovieOverlay>
       </S.MovieImage>
       <S.MovieIntroduction>
-        <div>
-          {movie.adult ? (
-            <Badge bg="danger">18 +</Badge>
-          ) : (
-            <Badge bg="primary">18 - </Badge>
-          )}
-        </div>
+        <div>{movie.title}</div>
       </S.MovieIntroduction>
     </S.MovieCardWrapper>
   );
