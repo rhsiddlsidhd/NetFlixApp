@@ -17,6 +17,7 @@ const MoviePage = () => {
   const [query] = useSearchParams();
   const keyword = query.get("q");
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageGroup, setPageGroup] = useState(1);
 
   const { data, isError, isLoading, error } = useSearchMovieQuery({
     keyword,
@@ -100,6 +101,8 @@ const MoviePage = () => {
         setCurrentPage={setCurrentPage}
         dataTotalPage={data.total_pages}
         currentPage={currentPage}
+        pageGroup={pageGroup}
+        setPageGroup={setPageGroup}
       />
     </Container>
   );
