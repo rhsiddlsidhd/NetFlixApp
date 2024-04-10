@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const MovieCardWrapper = styled.div`
   width: 100%;
-  height: 650px;
+  height: 700px;
   padding: 1rem;
 `;
 
@@ -31,6 +31,9 @@ export const RankingContainer = styled.div`
   > div:last-child {
     //연령Badge
     margin-right: 0.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -39,6 +42,8 @@ export const Ranking = styled.div`
   font-weight: bold;
   font-size: 1.5rem;
   height: 100%;
+  display: flex;
+  align-items: center;
   padding: 10px;
 `;
 
