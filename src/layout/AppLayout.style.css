@@ -1,20 +1,7 @@
 .me-auto > a {
   color: white;
 }
-
-@media (max-width: 750px) {
-  .navbarScroll {
-    display: flex;
-  }
-  /* Home 및 Movies 링크 숨기기 */
-  /* .me-auto,
-  .me-2,
-  button[type="submit"] {
-    display: none; 
-  } */
-
-  /* .hamburger {
-    border: none;
-    background-color: transparent;
-  } */
+.hamburgetWrapper {
+  display: none;
+  color: white;
 }

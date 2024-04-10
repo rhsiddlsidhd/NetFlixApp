@@ -1,5 +1,5 @@
 .banner {
-  height: 30vh;
+  height: 45vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -11,7 +11,7 @@
   background: linear-gradient(to top, black, transparent);
   position: absolute;
   left: 0;
-  height: 36vh;
+  height: 50vh;
   width: 100%;
 }
 
@@ -30,8 +30,9 @@
   z-index: 1;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 767px) {
   .banner {
+    height: 30vh;
     background-size: cover;
   }
 

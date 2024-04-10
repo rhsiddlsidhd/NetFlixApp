@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import "./AppLayout.style.css";
+import { Offcanvas } from "react-bootstrap";
 
 /**
  * 페이지 네이션
@@ -31,9 +32,9 @@ const AppLayout = () => {
   };
 
   return (
-    <div>
-      <Navbar bg="dark" data-bs-theme="dark">
-        <Container fluid>
+    <>
+      <Navbar bg="dark" data-bs-theme="dark" expand="md">
+        <Container fluid className="navbar_container">
           <img
             src={`${imgPath}/Netflix_Logo_RGB.png`}
             height="30"
@@ -71,7 +72,7 @@ const AppLayout = () => {
         </Container>
       </Navbar>
       <Outlet />
-    </div>
+    </>
   );
 };
 
