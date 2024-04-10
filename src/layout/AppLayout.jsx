@@ -5,8 +5,13 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-
 import "./AppLayout.style.css";
+
+/**
+ * 페이지 네이션
+ * keyword 검색시 params 로 page 1 넘겨주기
+ *
+ */
 
 const AppLayout = () => {
   const imgPath = process.env.REACT_APP_IMAGE_PATH;

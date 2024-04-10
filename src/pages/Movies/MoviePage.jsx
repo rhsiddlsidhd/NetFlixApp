@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "../../components/Container/Container";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import { useSearchParams } from "react-router-dom";
@@ -6,7 +6,7 @@ import { Alert } from "bootstrap";
 import * as S from "./MoviePage.style";
 import { Badge } from "react-bootstrap";
 import { useMoviesGenresQuery } from "../../hooks/useMovieListGenres";
-import Pagination from "react-bootstrap/Pagination";
+import Pagenation from "../../common/Pagenation/Pagenation";
 
 //경로 2가지
 //nav 바에서 클릭해서 온경우 => popularMovie 보여주기
@@ -16,10 +16,26 @@ import Pagination from "react-bootstrap/Pagination";
 const MoviePage = () => {
   const [query] = useSearchParams();
   const keyword = query.get("q");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isError, isLoading, error } = useSearchMovieQuery({ keyword });
+  const { data, isError, isLoading, error } = useSearchMovieQuery({
+    keyword,
+    currentPage,
+  });
 
-  console.log(data);
+  /**
+   * 총페이지데이터는 data.total_pages
+   * 페이지당 아이템 개수 result.length
+   * 버튼 개수는 data.total_pages / 5 개씩 해서 그룹으로 1 ,2 ,3 그룹으로 나누기
+   * ex) 43494 / 5 = 8498.8 임으로 ceil 써서 8499 그룹이 생성됨
+   * 1~8499 버튼을 5개씩만 Ui에 보여주기
+   * 버튼 렌더링 startPage EndPage 구해주기
+   * 1그룹을 가져왔을때 1 ~ 5 까지 렌더링
+   * 10그룹 가져오면 50 ~ 55 까지 렌더링
+   * (currentGroup - 1 ) * 5 + 1 1그룹시 page 0 2그룹시 page6
+   * Math.min(currentGroup * 5, totalPages);
+   */
+
   const { data: genreData } = useMoviesGenresQuery();
 
   if (isLoading) {
@@ -27,16 +43,6 @@ const MoviePage = () => {
   }
   if (isError) {
     return <Alert varient="danger">{error.message}</Alert>;
-  }
-
-  let active = 2;
-  let items = [];
-  for (let number = 1; number <= 5; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active}>
-        {number}
-      </Pagination.Item>
-    );
   }
 
   const showGenre = (genreIdList) => {
@@ -90,14 +96,11 @@ const MoviePage = () => {
           })}
         </S.KeyWordBoard>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Pagination>
-          <Pagination.Prev />
-          <Pagination variant="link">{items}</Pagination>
-          <Pagination.Ellipsis />
-          <Pagination.Next />
-        </Pagination>
-      </div>
+      <Pagenation
+        setCurrentPage={setCurrentPage}
+        dataTotalPage={data.total_pages}
+        currentPage={currentPage}
+      />
     </Container>
   );
 };
