@@ -21,7 +21,7 @@ const Banner = () => {
         className="banner"
       >
         <div className="text-white banner-text-area">
-          <h1>{data?.results[0].title}</h1>
+          <h3>{data?.results[0].title}</h3>
           <p>{data?.results[0].overview}</p>
         </div>
       </div>
