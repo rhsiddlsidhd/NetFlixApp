@@ -5,13 +5,13 @@ import MovieCard from "../MovieCard/MovieCard";
 import "./MovieSlider.style.css";
 
 const MovieSlider = ({ title, movies, responsive }) => {
-  const [centerMode, setCenterMode] = useState(true);
-  useEffect(() => {
-    const handleResize = () => {
-      setCenterMode(window.innerWidth <= 767 ? false : true);
-    };
-    window.addEventListener("resize", handleResize);
-  }, []);
+  // const [centerMode, setCenterMode] = useState(true);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setCenterMode(window.innerWidth <= 767 ? false : true);
+  //   };
+  //   window.addEventListener("resize", handleResize);
+  // }, []);
 
   return (
     <div>
@@ -27,7 +27,7 @@ const MovieSlider = ({ title, movies, responsive }) => {
       </h2>
       <Carousel
         infinite={true}
-        centerMode={centerMode}
+        centerMode={true}
         responsive={responsive}
         containerClass="carousel-container"
         itemClass="movie-slide"

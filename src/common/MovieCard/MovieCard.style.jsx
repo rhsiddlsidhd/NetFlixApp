@@ -1,19 +1,23 @@
 import { styled } from "styled-components";
 
 export const MovieCardWrapper = styled.div`
-  width: 220px;
-  height: 100%;
+  width: 100%;
+  height: 650px;
+  padding: 1rem;
 `;
 
 export const MovieImage = styled.div`
   height: 80%;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     transition: 1s;
   }
 `;
