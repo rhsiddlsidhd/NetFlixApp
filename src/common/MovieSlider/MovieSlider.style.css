@@ -1,7 +1,5 @@
 .carousel-container {
   overflow: hidden;
-
-  border: 3px solid blue;
 }
 @media screen and (max-width: 767px) {
   .carousel-container {

@@ -9,7 +9,6 @@ export const MovieCardWrapper = styled.div`
   }
   @media screen and (max-width: 767px) {
     max-height: 350px;
-    border: 1px solid yellowgreen;
   }
 `;
 
@@ -23,9 +22,6 @@ export const MovieImage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 5px solid red;
-  @media screen and (max-width: 767px) {
-  }
 `;
 
 export const RankingContainer = styled.div`
