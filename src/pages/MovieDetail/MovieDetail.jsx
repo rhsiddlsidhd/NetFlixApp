@@ -158,7 +158,7 @@ const MovieIntroduceWrapper = styled.div`
   height: 80vh;
   border-bottom: 1px solid gray;
   @media screen and (max-width: 767px) {
-    height: 130vh;
+    min-height: 130vh;
   }
 `;
 
@@ -303,12 +303,7 @@ const InfoEtc = styled.div`
 
 const MovieOverview = styled.div`
   height: 40%;
-  overflow: scroll;
 
-  &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
   @media screen and (max-width: 767px) {
     height: 30vh;
     min-width: 370px;
