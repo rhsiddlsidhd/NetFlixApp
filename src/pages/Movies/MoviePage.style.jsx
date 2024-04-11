@@ -1,5 +1,9 @@
 import { styled } from "styled-components";
 
+//불편 그자체 스크롤 없애고 히든
+
+// 3줄 이상 그냥 . . .
+
 export const KeyWordBoard = styled.div`
   height: fit-content;
   display: flex;
@@ -9,9 +13,8 @@ export const KeyWordBoard = styled.div`
 `;
 
 export const KeyWordItem = styled.div`
-  width: 80%;
+  width: 70%;
   height: 12rem;
-  /* height: fit-content; */
   display: flex;
   margin-bottom: 3rem;
   color: white;
@@ -31,31 +34,31 @@ export const KeyWordItem = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-
     .title {
       width: 100%;
+      height: 30%;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
       font-weight: bold;
-
-      flex: 2;
     }
     .genre {
       width: 100%;
-
-      flex: 3;
-
+      height: 30%;
+      display: flex;
+      align-items: center;
       > .badge {
         margin-right: 0.5rem;
         margin-bottom: 0.5rem;
       }
     }
     > div:last-child {
-      flex: 5;
-    }
-    overflow: scroll;
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
+      height: 40%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
   }
 
@@ -67,13 +70,20 @@ export const KeyWordItem = styled.div`
       width: 100%;
 
       .title {
-        flex: 1;
+        /* height: 20%; */
+        height: fit-content;
       }
       .genre {
-        flex: 1;
+        height: fit-content;
+        flex-wrap: wrap;
       }
       > div:last-child {
-        flex: 8;
+        height: 50%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
       }
     }
   }
