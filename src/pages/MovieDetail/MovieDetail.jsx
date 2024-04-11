@@ -156,8 +156,12 @@ export default MovieDetail;
 const MovieIntroduceWrapper = styled.div`
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+
   @media screen and (max-width: 767px) {
-    height: 130vh;
+    height: 120vh;
+    min-height: 120vh;
   }
 `;
 
@@ -294,6 +298,7 @@ const InfoEtcWrapper = styled.div`
 
 const InfoEtc = styled.div`
   display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
   margin-bottom: 0.5rem;
   > div:last-child {
     margin-left: 1rem;
@@ -304,10 +309,15 @@ const MovieOverview = styled.div`
   height: 40%;
   min-height: 30vh;
 
+  flex: 1; /* 부모 컨테이너의 남은 공간을 채움 */
+
   @media screen and (max-width: 767px) {
     min-height: 25vh;
     min-width: 300px;
   }
 `;
 
-const MovieReviewWrapper = styled.div``;
+const MovieReviewWrapper = styled.div`
+  height: 100vh;
+  background-color: red;
+`;
