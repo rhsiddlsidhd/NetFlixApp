@@ -6,6 +6,8 @@ import { Alert } from "bootstrap";
 import { styled } from "styled-components";
 import Stack from "react-bootstrap/Stack";
 import { Badge } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 /**
  * 영화 포스터
  * 영화 제목
@@ -25,8 +27,6 @@ const MovieDetail = () => {
 
   const { data, isLoading, isError, error } = useMovieDetailQuery(id);
 
-  console.log(data);
-
   if (isLoading) {
     return <h1>Loading</h1>;
   }
@@ -42,7 +42,21 @@ const MovieDetail = () => {
     tagline,
     vote_average,
     popularity,
+    adult,
+    budget,
+    revenue,
+    release_date,
+    runtime,
+    overview,
   } = data;
+
+  const etcBadge = ["Budget", "Revenue", "ReleaseDate", "Runtime"];
+  const dataTextMap = {
+    Budget: "$" + budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    Revenue: "$" + revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    ReleaseDate: release_date,
+    Runtime: runtime,
+  };
 
   return (
     <Container>
@@ -76,29 +90,60 @@ const MovieDetail = () => {
                       );
                     })}
                   </Stack>
-                  <div className="info_title">{title}</div>
+                  <div className="info_title">
+                    <div>{title}</div>
+
+                    {adult ? (
+                      <Badge className="age" bg="danger">
+                        18 +
+                      </Badge>
+                    ) : (
+                      <Badge className="age" bg="primary">
+                        18 -{" "}
+                      </Badge>
+                    )}
+                  </div>
                   <div className="info_tagline">{tagline}</div>
                 </InfoTag>
                 <InfoLike>
                   <div>
-                    <div>icon</div>
-                    <div>{vote_average}</div>
+                    <div>
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        style={{ color: "yellow" }}
+                      />
+                    </div>
+                    <div style={{ color: "white", marginLeft: "0.5rem" }}>
+                      {vote_average.toFixed(1)}
+                    </div>
                   </div>
                   <div>
-                    <div>icon</div>
-                    <div>{popularity}</div>
+                    <div>
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        style={{ color: "red" }}
+                      />
+                    </div>
+                    <div style={{ color: "white", marginLeft: "0.5rem" }}>
+                      {popularity.toFixed(1)}
+                    </div>
                   </div>
-                  <div>adult</div>
                 </InfoLike>
-                <InfoEtc>
-                  <div>budget</div>
-                  <div>revenue</div>
-                  <div>ReleaseDate</div>
-                  <div>Runtime</div>
-                </InfoEtc>
+                <InfoEtcWrapper>
+                  {etcBadge.map((it, index) => {
+                    return (
+                      <InfoEtc>
+                        <Badge key={index} className="badge" bg="danger">
+                          {it}
+                        </Badge>
+                        <div style={{ color: "white" }}>{dataTextMap[it]}</div>
+                      </InfoEtc>
+                    );
+                  })}
+                </InfoEtcWrapper>
               </Info>
             </MovieDescription>
-            <div>123</div>
+            <MovieOverview>{overview}</MovieOverview>
           </div>
         </MovieIntroduce>
       </MovieIntroduceWrapper>
@@ -123,8 +168,18 @@ const InfoTag = styled.div`
     }
   }
   .info_title {
-    font-weight: bold;
-    font-size: 1.7rem;
+    display: flex;
+    align-items: center;
+
+    > div {
+      font-weight: bold;
+      font-size: 1.7rem;
+    }
+    > .age {
+      height: fit-content;
+      margin-left: 1rem;
+    }
+
     @media screen and (max-width: 767px) {
       font-size: 1.3rem;
     }
@@ -148,12 +203,20 @@ const InfoLike = styled.div`
   }
 `;
 
-const InfoEtc = styled.div`
+const InfoEtcWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   height: 50%;
   margin-bottom: 1rem;
+`;
+
+const InfoEtc = styled.div`
+  display: flex;
+  margin-bottom: 0.5rem;
+
+  > div:last-child {
+    margin-left: 1rem;
+  }
 `;
 
 const MovieIntroduceWrapper = styled.div`
@@ -188,9 +251,6 @@ const MovieIntroduce = styled.div`
     width: 80%;
     display: flex;
     flex-direction: column;
-    > div:last-child {
-      border: 3px solid yellow;
-    }
   }
 `;
 
@@ -201,20 +261,22 @@ const MovieDescription = styled.div`
   justify-content: space-between;
   @media screen and (max-width: 767px) {
     flex-direction: column;
+    height: 80%;
   }
 `;
 
 const PosterBox = styled.div`
   min-width: 300px;
   height: 100%;
-  border: 2px solid blue;
   position: relative;
+  @media screen and (max-width: 767px) {
+    height: 75%;
+  }
 `;
 
 const Poster = styled.div`
   min-width: 300px;
   height: 100%;
-  border: 1px solid red;
   position: absolute;
   top: -2rem;
   background: url(${(props) => props.$posterppath});
@@ -228,10 +290,23 @@ const MovieReviewWrapper = styled.div`
 
 const Info = styled.div`
   width: calc(90% - 300px);
-  border: 1px solid green;
+
   @media screen and (max-width: 767px) {
     width: 100%;
     min-width: 300px;
     height: 80%;
+  }
+`;
+
+const MovieOverview = styled.div`
+  height: 40%;
+  color: white;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  @media screen and (max-width: 767px) {
+    height: 20%;
   }
 `;
