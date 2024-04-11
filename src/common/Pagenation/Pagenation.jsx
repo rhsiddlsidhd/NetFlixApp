@@ -26,7 +26,7 @@ const Pagenation = ({ ...rest }) => {
   };
 
   const handleNextGroup = () => {
-    if (pageGroup < dataTotalPage) {
+    if (pageGroup < Math.ceil(dataTotalPage / 5)) {
       setPageGroup(pageGroup + 1);
       setCurrentPage(pageGroup * 5 + 1);
     }
@@ -67,7 +67,7 @@ const Pagenation = ({ ...rest }) => {
       <button
         className="nextBtn"
         onClick={handleNextGroup}
-        disabled={pageGroup === dataTotalPage}
+        disabled={pageGroup === dataTotalPage || currentPage === dataTotalPage}
       >
         next
       </button>
