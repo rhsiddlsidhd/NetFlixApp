@@ -2,11 +2,9 @@ import { styled } from "styled-components";
 
 export const MovieCardWrapper = styled.div`
   width: 100%;
+  /* height: 700px; */
   height: 100%;
-  &:hover {
-    transform: translateY(10px);
-    transition: 1s;
-  }
+
   @media screen and (max-width: 767px) {
     max-height: 350px;
   }
@@ -22,6 +20,10 @@ export const MovieImage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &:hover {
+    transform: translateY(10px);
+    transition: 1s;
+  }
 `;
 
 export const RankingContainer = styled.div`
