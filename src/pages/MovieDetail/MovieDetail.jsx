@@ -80,7 +80,7 @@ const MovieDetail = () => {
                   <Stack
                     direction="horizontal"
                     gap={1}
-                    style={{ width: "100%", flexWrap: "wrap" }}
+                    style={{ width: "100%", flexWrap: "wrap", height: "25%" }}
                   >
                     {genres?.map((it, index) => {
                       return (
@@ -92,7 +92,6 @@ const MovieDetail = () => {
                   </Stack>
                   <div className="info_title">
                     <div>{title}</div>
-
                     {adult ? (
                       <Badge className="age" bg="danger">
                         18 +
@@ -154,74 +153,13 @@ const MovieDetail = () => {
 
 export default MovieDetail;
 
-const InfoTag = styled.div`
-  width: 100%;
-
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  > div {
-    height: 33%;
-    color: white;
-    @media screen and (max-width: 767px) {
-      height: fit-content;
-    }
-  }
-  .info_title {
-    display: flex;
-    align-items: center;
-
-    > div {
-      font-weight: bold;
-      font-size: 1.7rem;
-    }
-    > .age {
-      height: fit-content;
-      margin-left: 1rem;
-    }
-
-    @media screen and (max-width: 767px) {
-      font-size: 1.3rem;
-    }
-  }
-  .info_tagline {
-    @media screen and (max-width: 767px) {
-      font-size: 0.8rem;
-    }
-  }
-`;
-
-const InfoLike = styled.div`
-  display: flex;
-  width: 100%;
-  height: 10%;
-
-  > div {
-    margin-right: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-  }
-`;
-
-const InfoEtcWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  margin-bottom: 1rem;
-`;
-
-const InfoEtc = styled.div`
-  display: flex;
-  margin-bottom: 0.5rem;
-
-  > div:last-child {
-    margin-left: 1rem;
-  }
-`;
-
 const MovieIntroduceWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 80vh;
+  border-bottom: 1px solid gray;
+  @media screen and (max-width: 767px) {
+    height: 130vh;
+  }
 `;
 
 const MovieBackdrop = styled.div`
@@ -231,6 +169,7 @@ const MovieBackdrop = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+
   @media screen and (max-width: 767px) {
     height: 30vh;
   }
@@ -247,21 +186,27 @@ const MovieIntroduce = styled.div`
   height: 65%;
   display: flex;
   justify-content: center;
+
   > div {
     width: 80%;
     display: flex;
     flex-direction: column;
   }
+  @media screen and (max-width: 767px) {
+    height: 100vh;
+  }
 `;
 
 const MovieDescription = styled.div`
   width: 100%;
-  height: 60%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
+
   @media screen and (max-width: 767px) {
     flex-direction: column;
-    height: 80%;
+    height: 90vh;
+    min-width: 370px;
   }
 `;
 
@@ -269,8 +214,9 @@ const PosterBox = styled.div`
   min-width: 300px;
   height: 100%;
   position: relative;
+
   @media screen and (max-width: 767px) {
-    height: 75%;
+    height: 50vh;
   }
 `;
 
@@ -284,29 +230,91 @@ const Poster = styled.div`
   background-size: contain;
 `;
 
-const MovieReviewWrapper = styled.div`
-  height: 60vh;
-`;
-
 const Info = styled.div`
   width: calc(90% - 300px);
 
   @media screen and (max-width: 767px) {
     width: 100%;
-    min-width: 300px;
-    height: 80%;
+    height: 100%;
+    min-height: 300px;
+  }
+`;
+
+const InfoTag = styled.div`
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+
+  .info_title {
+    display: flex;
+    align-items: center;
+    color: white;
+    height: 40%;
+
+    > div {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    > .age {
+      margin-left: 1rem;
+    }
+  }
+  .info_tagline {
+    font-size: 0.8rem;
+    color: white;
+    height: 35%;
+  }
+`;
+
+const InfoLike = styled.div`
+  display: flex;
+  width: 100%;
+  height: 5%;
+  margin-bottom: 1rem;
+  > div {
+    margin-right: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+  }
+`;
+
+const InfoEtcWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30%;
+  margin-bottom: 1rem;
+`;
+
+const InfoEtc = styled.div`
+  display: flex;
+  margin-bottom: 0.5rem;
+  > div:last-child {
+    margin-left: 1rem;
   }
 `;
 
 const MovieOverview = styled.div`
   height: 40%;
-  color: white;
   overflow: scroll;
+
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
   @media screen and (max-width: 767px) {
-    height: 20%;
+    height: 30vh;
+    min-width: 370px;
   }
+`;
+
+const MovieReviewWrapper = styled.div`
+  height: 60vh;
 `;
