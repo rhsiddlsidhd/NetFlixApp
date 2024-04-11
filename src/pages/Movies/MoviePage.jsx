@@ -75,12 +75,14 @@ const MoviePage = () => {
           {data.results.map((it, index) => {
             return (
               <S.KeyWordItem key={index}>
-                <img
-                  src={`https://media.themoviedb.org/t/p/w94_and_h141_bestv2${it.poster_path}`}
-                  alt="이미지"
-                />
+                <div className="img_wrapper">
+                  <img
+                    src={`https://media.themoviedb.org/t/p/w94_and_h141_bestv2${it.poster_path}`}
+                    alt="이미지"
+                  />
+                </div>
                 <div className="keyword_introduce">
-                  <div>{it.title}</div>
+                  <div className="title">{it.title}</div>
                   <div className="genre">
                     {showGenre(it.genre_ids).map((it, index) => {
                       return (

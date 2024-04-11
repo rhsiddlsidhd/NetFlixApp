@@ -11,34 +11,70 @@ export const KeyWordBoard = styled.div`
 export const KeyWordItem = styled.div`
   width: 80%;
   height: 12rem;
+  /* height: fit-content; */
   display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   color: white;
-  > img {
-    width: 10rem;
-    height: 100%;
-    margin-right: 1rem;
-  }
-  .keyword_introduce {
-    width: 80%;
-    height: 65%;
+  border-bottom: 1px solid gray;
 
+  > .img_wrapper {
+    min-width: 150px;
+    height: 100%;
+
+    > img {
+      height: 100%;
+      border: 5px solid white;
+    }
+  }
+  > .keyword_introduce {
+    width: calc(100% - 150px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+      width: 100%;
+      font-weight: bold;
+
+      flex: 2;
+    }
     .genre {
       width: 100%;
-      flex-wrap: wrap;
-      display: flex;
+
+      flex: 3;
+
       > .badge {
         margin-right: 0.5rem;
         margin-bottom: 0.5rem;
       }
     }
     > div:last-child {
-      padding-top: 0.5rem;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      word-break: break-all;
+      flex: 5;
+    }
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    height: 24rem;
+    .keyword_introduce {
+      margin-top: 1rem;
+      width: 100%;
+
+      .title {
+        flex: 1;
+      }
+      .genre {
+        flex: 1;
+      }
+      > div:last-child {
+        flex: 8;
+      }
     }
   }
 `;
