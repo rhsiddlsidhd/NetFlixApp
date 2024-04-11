@@ -1,5 +1,10 @@
 .carousel-container {
   overflow: hidden;
-  height: fit-content;
-  border: 1px solid red;
+
+  border: 3px solid blue;
+}
+@media screen and (max-width: 767px) {
+  .carousel-container {
+    height: 350px;
+  }
 }

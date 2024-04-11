@@ -32,9 +32,7 @@ const MovieCard = ({ movie, index }) => {
   return (
     <S.MovieCardWrapper>
       <S.MovieImage
-        style={{
-          backgroundImage: `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path})`,
-        }}
+        $moviePosterPath={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`}
         onClick={navigateToMovieDetail}
       >
         <S.RankingContainer>

@@ -2,29 +2,30 @@ import { styled } from "styled-components";
 
 export const MovieCardWrapper = styled.div`
   width: 100%;
-  /* width: 500px; */
   height: 100%;
-  border: 5px solid red;
   &:hover {
-    /* transform: translateY(-5px);
-    transition: 1s; */
-    transform: scale(1.3) translateZ(20px);
+    transform: translateY(10px);
     transition: 1s;
-    z-index: 2;
+  }
+  @media screen and (max-width: 767px) {
+    max-height: 350px;
+    border: 1px solid yellowgreen;
   }
 `;
 
 export const MovieImage = styled.div`
   height: 80%;
-  /* height: fit-content; */
+  background: url(${(props) => props.$moviePosterPath});
   background-size: cover;
-  /* background-size: contain; */
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 5px solid red;
+  @media screen and (max-width: 767px) {
+  }
 `;
 
 export const RankingContainer = styled.div`
@@ -115,5 +116,8 @@ export const MovieIntroduction = styled.div`
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
+  }
+  @media screen and (max-width: 767px) {
+    height: 10%;
   }
 `;
