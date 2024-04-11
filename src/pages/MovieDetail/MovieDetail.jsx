@@ -155,10 +155,10 @@ export default MovieDetail;
 
 const MovieIntroduceWrapper = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   border-bottom: 1px solid gray;
   @media screen and (max-width: 767px) {
-    min-height: 130vh;
+    height: 150vh;
   }
 `;
 
@@ -206,7 +206,7 @@ const MovieDescription = styled.div`
   @media screen and (max-width: 767px) {
     flex-direction: column;
     height: 90vh;
-    min-width: 370px;
+    min-width: 430px;
   }
 `;
 
@@ -306,7 +306,7 @@ const MovieOverview = styled.div`
 
   @media screen and (max-width: 767px) {
     height: 30vh;
-    min-width: 370px;
+    min-width: 430px;
   }
 `;
 
