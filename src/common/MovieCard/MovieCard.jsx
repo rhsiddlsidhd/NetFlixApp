@@ -5,8 +5,11 @@ import * as S from "./MovieCard.style.jsx";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Stack from "react-bootstrap/Stack";
 import { useMoviesGenresQuery } from "../../hooks/useMovieListGenres.js";
+import { useNavigate } from "react-router-dom";
 const MovieCard = ({ movie, index }) => {
   const { data: genreData } = useMoviesGenresQuery();
+
+  const navigate = useNavigate();
 
   const showGenre = (genreIdList) => {
     if (!genreData) {
@@ -20,12 +23,19 @@ const MovieCard = ({ movie, index }) => {
     return genreNameList;
   };
 
+  const movieId = movie.id;
+
+  const navigateToMovieDetail = () => {
+    navigate(`/movies/${movieId}`);
+  };
+
   return (
     <S.MovieCardWrapper>
       <S.MovieImage
         style={{
           backgroundImage: `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path})`,
         }}
+        onClick={navigateToMovieDetail}
       >
         <S.RankingContainer>
           <S.Ranking>{index + 1}</S.Ranking>

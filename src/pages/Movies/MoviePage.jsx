@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "../../components/Container/Container";
+import { Container } from "../../components/Container/Container.style";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import { useSearchParams } from "react-router-dom";
 import { Alert } from "bootstrap";

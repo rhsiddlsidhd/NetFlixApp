@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../../components/Container/Container";
+import { Container } from "../../components/Container/Container.style";
 import Banner from "./Banner/Banner";
 import PopularMovieslide from "./PopularMovies/PopularMovieslide";
 import TopRatedMoviesSlide from "./TopRatedMovies/TopRatedMoviesSlide";

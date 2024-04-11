@@ -3,7 +3,10 @@ import { styled } from "styled-components";
 export const MovieCardWrapper = styled.div`
   width: 100%;
   height: 700px;
-  padding: 1rem;
+
+  @media screen and (max-width: 767px) {
+    /* width: 500px; */
+  }
 `;
 
 export const MovieImage = styled.div`

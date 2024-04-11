@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import * as S from "./Pagenation.style";
 
 const Pagenation = ({ ...rest }) => {
   const {
@@ -43,7 +43,7 @@ const Pagenation = ({ ...rest }) => {
   }, [pageGroup, dataTotalPage]);
 
   return (
-    <PagenationWrapper>
+    <S.PagenationWrapper>
       <button
         className="prevBtn"
         onClick={() => handlePrevGroup()}
@@ -54,13 +54,13 @@ const Pagenation = ({ ...rest }) => {
 
       {buttons.map((it, index) => {
         return (
-          <PagenationItem
+          <S.PagenationItem
             active={it === currentPage ? "true" : "false"}
             key={index}
             onClick={() => handleClick(it)}
           >
             {it}
-          </PagenationItem>
+          </S.PagenationItem>
         );
       })}
 
@@ -71,33 +71,8 @@ const Pagenation = ({ ...rest }) => {
       >
         next
       </button>
-    </PagenationWrapper>
+    </S.PagenationWrapper>
   );
 };
 
 export default Pagenation;
-
-const PagenationWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 1.5rem;
-
-  > button {
-    border: none;
-    background-color: transparent;
-    margin: 1rem;
-    &:hover {
-      color: gray;
-    }
-  }
-  > .prevBtn,
-  .nextBtn {
-    color: white;
-    cursor: pointer;
-  }
-`;
-
-const PagenationItem = styled.button`
-  color: ${(props) => (props.active === "true" ? "red" : "white")};
-  font-weight: ${(props) => (props.active === "true" ? "bold" : "")};
-`;
