@@ -12,6 +12,9 @@ export const PagenationWrapper = styled.div`
     &:hover {
       color: gray;
     }
+    @media screen and (max-width: 767px) {
+      margin: 0;
+    }
   }
   > .prevBtn,
   .nextBtn {
