@@ -1,6 +1,6 @@
 .carousel-container {
   overflow: hidden;
-  /* height: 700px; */
+  height: 700px;
 }
 @media screen and (max-width: 767px) {
   .carousel-container {

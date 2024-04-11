@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 
 export const MovieCardWrapper = styled.div`
   width: 100%;
-  /* height: 700px; */
-  height: 100%;
+  height: 700px;
+  /* height: 100%; */
 
   @media screen and (max-width: 767px) {
     max-height: 350px;
