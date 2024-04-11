@@ -146,7 +146,7 @@ const MovieDetail = () => {
           </div>
         </MovieIntroduce>
       </MovieIntroduceWrapper>
-      <MovieReviewWrapper></MovieReviewWrapper>
+      <MovieReviewWrapper>123</MovieReviewWrapper>
     </Container>
   );
 };
@@ -156,9 +156,8 @@ export default MovieDetail;
 const MovieIntroduceWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  border-bottom: 1px solid gray;
   @media screen and (max-width: 767px) {
-    height: 150vh;
+    height: 130vh;
   }
 `;
 
@@ -206,7 +205,7 @@ const MovieDescription = styled.div`
   @media screen and (max-width: 767px) {
     flex-direction: column;
     height: 90vh;
-    min-width: 430px;
+    min-width: 300px;
   }
 `;
 
@@ -303,13 +302,12 @@ const InfoEtc = styled.div`
 
 const MovieOverview = styled.div`
   height: 40%;
+  min-height: 30vh;
 
   @media screen and (max-width: 767px) {
-    height: 30vh;
-    min-width: 430px;
+    min-height: 25vh;
+    min-width: 300px;
   }
 `;
 
-const MovieReviewWrapper = styled.div`
-  height: 60vh;
-`;
+const MovieReviewWrapper = styled.div``;
