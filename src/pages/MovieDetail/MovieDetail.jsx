@@ -145,8 +145,8 @@ const MovieDetail = () => {
             <MovieOverview>{overview}</MovieOverview>
           </div>
         </MovieIntroduce>
+        <MovieReviewWrapper>123</MovieReviewWrapper>
       </MovieIntroduceWrapper>
-      <MovieReviewWrapper>123</MovieReviewWrapper>
     </Container>
   );
 };

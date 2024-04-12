@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import MoviePage from "./pages/Movies/MoviePage";
 import NotFoundpage from "./pages/NotFoundpage/NotFoundpage";
+import Detail from "./pages/MovieDetail/Detail";
 
 // 홈페이지
 // 영화 전체 보여주는 페이지 (서치)
@@ -19,7 +20,8 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="movies">
             <Route index element={<MoviePage />} />
-            <Route path=":id" element={<MovieDetail />} />
+            {/* <Route path=":id" element={<MovieDetail />} /> */}
+            <Route path=":id" element={<Detail />} />
           </Route>
         </Route>
 
