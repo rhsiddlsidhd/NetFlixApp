@@ -43,7 +43,7 @@ const MovieReviews = ({ id }) => {
 
   return (
     <S.Review>
-      <h1>Review</h1>
+      <h1>Review({data.results.length})</h1>
       <S.ReviewBoard>
         {data.results?.map((it, index) => {
           return (

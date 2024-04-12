@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "../../components/Container/Container.style";
 import { useMovieDetailQuery } from "../../hooks/useMovieDetails";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ import MovieInfo from "../../components/MovieDetail/MovieInfo";
 import MovieReviews from "./../../components/MovieDetail/MovieReviews";
 import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import MovieRecommendation from "../../components/MovieDetail/MovieRecommendation";
 
 /**
  * 영화 포스터
@@ -23,6 +24,7 @@ import Spinner from "react-bootstrap/Spinner";
  * post url https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xLBbOZCXLxYbtIOjC03dKxLlKqR.jpg
  */
 const MovieDetail = () => {
+  const [activeTab, setActiveTab] = useState("reviews");
   const { id } = useParams();
 
   const { data, isLoading, isError, error } = useMovieDetailQuery(id);
@@ -72,6 +74,10 @@ const MovieDetail = () => {
     Runtime: runtime,
   };
 
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+  };
+
   return (
     <Container>
       <S.IntroduceWrapper>
@@ -105,7 +111,22 @@ const MovieDetail = () => {
           </S.Introduce>
         </S.CenterContainer>
       </S.IntroduceWrapper>
-      <MovieReviews id={id} />
+      <S.TabBtnWrapper>
+        <S.ReviewsTab
+          onClick={() => handleTabClick("reviews")}
+          className={activeTab === "reviews" ? "active" : ""}
+        >
+          Reviews
+        </S.ReviewsTab>
+        <S.RecommendationTab
+          onClick={() => handleTabClick("Recommendation")}
+          className={activeTab === "Recommendation" ? "active" : ""}
+        >
+          Recommendation
+        </S.RecommendationTab>
+      </S.TabBtnWrapper>
+      {activeTab === "reviews" && <MovieReviews id={id} />}
+      {activeTab === "Recommendation" && <MovieRecommendation id={id} />}
     </Container>
   );
 };

@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import apiInstance from "../utils/api";
 
 const fetchMovieReview = (id) => {
-  console.log(id);
   return apiInstance.get(`/movie/${id}/reviews`);
 };
 

@@ -222,14 +222,15 @@ export const Review = styled.div`
     margin-bottom: 2rem;
   }
 `;
+export const Recommendation = styled(Review)``;
 
 export const ReviewBoard = styled.div`
-  border-radius: 5px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 `;
+export const RecommendationBoard = styled(ReviewBoard)``;
 
 export const Item = styled.div`
   width: 90%;
@@ -243,3 +244,33 @@ export const Item = styled.div`
     margin: 1rem;
   }
 `;
+
+export const RecommendationItem = styled(Item)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+export const TabBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+  > button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    &:hover {
+      color: gray;
+    }
+  }
+  .active {
+    color: red;
+  }
+  @media screen and (max-width: 767px) {
+    margin: 5rem;
+  }
+`;
+export const ReviewsTab = styled.button``;
+export const RecommendationTab = styled.button``;
