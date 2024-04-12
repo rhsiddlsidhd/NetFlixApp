@@ -49,7 +49,7 @@ const MovieReviews = ({ id }) => {
           return (
             <S.Item key={index}>
               <h1>{it.author}</h1>
-              <div>{it.content}</div>
+              <div className="cotent">{it.content}</div>
             </S.Item>
           );
         })}

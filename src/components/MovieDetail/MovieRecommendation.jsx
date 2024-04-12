@@ -7,7 +7,7 @@ import MovieNewCard from "../../common/MovieNewCard/MovieNewCard";
 
 const MovieRecommendation = ({ id }) => {
   const { data, isLoading, isError, error } = useMovieRecommendationsQuery(id);
-  console.log(data);
+
   if (isLoading) {
     return (
       <div
@@ -28,13 +28,14 @@ const MovieRecommendation = ({ id }) => {
   if (isError) {
     return <Navigate to="/not-found" error={error} replace />;
   }
+
   return (
     <S.Recommendation>
       <h1>Recommendation({data.results.length})</h1>
       <S.RecommendationBoard>
         <S.RecommendationItem>
           {data.results.map((movie, index) => {
-            return <MovieNewCard movie={movie} />;
+            return <MovieNewCard movie={movie} key={index} />;
           })}
         </S.RecommendationItem>
       </S.RecommendationBoard>

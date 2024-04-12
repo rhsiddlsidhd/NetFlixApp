@@ -239,7 +239,7 @@ export const Item = styled.div`
   border-radius: 10px;
   margin-bottom: 2rem;
   > h1,
-  div {
+  .cotent {
     color: white;
     margin: 1rem;
   }
