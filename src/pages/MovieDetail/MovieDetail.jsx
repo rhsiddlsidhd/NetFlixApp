@@ -171,9 +171,10 @@ export default MovieDetail;
 const IntroduceWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
   @media screen and (max-width: 767px) {
     /* min-width: 300px; */
-    min-width: 250px;
+    /* min-width: 250px; */
   }
 `;
 const Backdrop = styled.div`
@@ -194,13 +195,14 @@ const Bottomlayout = styled.div`
 `;
 
 const Introduce = styled.div`
-  height: 80vh;
+  height: 80%;
 
   @media screen and (max-width: 767px) {
-    height: 75vh;
+    /* height: 75vh; */
+    height: 75%;
     /* min-width: 300px;
      */
-    min-width: 250px;
+    /* min-width: 250px; */
   }
 `;
 
@@ -216,7 +218,7 @@ const MovieImgGuideWrapper = styled.div`
 const MovieImg = styled.div`
   width: 300px;
   /* min-width: 300px; */
-  min-width: 250px;
+  /* min-width: 250px; */
   position: relative;
 
   @media screen and (max-width: 767px) {
@@ -226,8 +228,7 @@ const MovieImg = styled.div`
 `;
 
 const Img = styled.div`
-  /* min-width: 300px; */
-  min-width: 250px;
+  width: 100%;
   height: 100%;
   position: absolute;
   top: -2rem;
@@ -300,13 +301,13 @@ const InfoEtcWrapper = styled.div`
 const InfoEtc = styled.div`
   width: 50%;
   /* min-width: 400px; */
-  min-width: 250px;
+  /* min-width: 250px; */
   height: 100%;
 
   display: flex;
   @media screen and (max-width: 767px) {
     /* min-width: 300px; */
-    min-width: 250px;
+    /* min-width: 250px; */
     width: 100%;
   }
 `;
@@ -358,13 +359,15 @@ const InfoItem = styled.div`
 `;
 
 const MovieOverviewWrapper = styled.div`
-  height: 40%;
+  /* height: 40%; */
+  /* flex-grow: 1; */
   color: white;
+  background-color: red;
   @media screen and (max-width: 767px) {
     height: 30%;
   }
 `;
 
 const Review = styled.div`
-  height: 35vh;
+  height: 35%;
 `;
