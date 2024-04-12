@@ -172,7 +172,8 @@ const IntroduceWrapper = styled.div`
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 767px) {
-    min-width: 300px;
+    /* min-width: 300px; */
+    min-width: 250px;
   }
 `;
 const Backdrop = styled.div`
@@ -197,7 +198,9 @@ const Introduce = styled.div`
 
   @media screen and (max-width: 767px) {
     height: 75vh;
-    min-width: 300px;
+    /* min-width: 300px;
+     */
+    min-width: 250px;
   }
 `;
 
@@ -212,7 +215,8 @@ const MovieImgGuideWrapper = styled.div`
 `;
 const MovieImg = styled.div`
   width: 300px;
-  min-width: 300px;
+  /* min-width: 300px; */
+  min-width: 250px;
   position: relative;
 
   @media screen and (max-width: 767px) {
@@ -222,7 +226,8 @@ const MovieImg = styled.div`
 `;
 
 const Img = styled.div`
-  min-width: 300px;
+  /* min-width: 300px; */
+  min-width: 250px;
   height: 100%;
   position: absolute;
   top: -2rem;
@@ -294,12 +299,14 @@ const InfoEtcWrapper = styled.div`
 
 const InfoEtc = styled.div`
   width: 50%;
-  min-width: 400px;
+  /* min-width: 400px; */
+  min-width: 250px;
   height: 100%;
 
   display: flex;
   @media screen and (max-width: 767px) {
-    min-width: 300px;
+    /* min-width: 300px; */
+    min-width: 250px;
     width: 100%;
   }
 `;
