@@ -271,6 +271,10 @@ const InfoTag = styled.div`
     align-items: center;
     color: white;
     height: 40%;
+    @media screen and (max-width: 767px) {
+      /*  */
+      margin-top: 1rem;
+    }
 
     > div {
       display: flex;
@@ -304,21 +308,30 @@ const InfoLike = styled.div`
     display: flex;
     flex-wrap: wrap;
   }
+  @media screen and (max-width: 767px) {
+    /*  */
+    margin-top: 2rem;
+  }
 `;
 
 const InfoEtcWrapper = styled.div`
+  width: 100%;
   height: 30%;
+
   display: flex;
 `;
 
 const InfoEtc = styled.div`
-  width: 50%;
+  width: 400px;
 
   height: 100%;
-
   display: flex;
   @media screen and (max-width: 767px) {
     width: 100%;
+
+    margin-top: 2rem;
+    min-height: 150px;
+    flex-direction: column;
   }
 `;
 
