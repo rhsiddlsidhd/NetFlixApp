@@ -1,7 +1,7 @@
 import React from "react";
 import "./NotFoundpage.style.css";
 
-const NotFoundpage = () => {
+const NotFoundpage = (error) => {
   const imgPath = process.env.REACT_APP_IMAGE_PATH;
 
   return (
@@ -16,9 +16,7 @@ const NotFoundpage = () => {
           <h1 className="error_status">404</h1>
           <h2 className="error_message">page not found</h2>
         </div>
-        <div className="error_text">
-          alwkdma kamwdkla lasmd klasmd lasmdklasmdkla msld
-        </div>
+        <div className="error_text"></div>
       </div>
     </div>
   );

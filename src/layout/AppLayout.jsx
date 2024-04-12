@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -7,17 +7,32 @@ import Navbar from "react-bootstrap/Navbar";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import "./AppLayout.style.css";
 
+/**
+ * useRef 로 같은 검색어 두번 클릭시 api 호출 불러오는거 방지
+ *
+ * 1) 키워드에 해당하는 data가 없을때 error페이지 던지기
+ */
+
 const AppLayout = () => {
   const imgPath = process.env.REACT_APP_IMAGE_PATH;
   const [keyword, setKeyword] = useState("");
-
+  const prevKeyword = useRef("");
+  const inputValueRef = useRef(null);
   const navigate = useNavigate();
 
   const searchByKeyword = (e) => {
     e.preventDefault();
-    // url을 바꿔주기
-    navigate(`/movies?q=${keyword}`);
-    setKeyword("");
+    if (keyword.trim() === "") {
+      inputValueRef.current.focus();
+    }
+
+    if (prevKeyword.current !== keyword) {
+      // url을 바꿔주기
+      navigate(`/movies?q=${keyword}`);
+      setKeyword("");
+    } else {
+      prevKeyword.current = keyword;
+    }
   };
 
   const logoClick = () => {
@@ -48,6 +63,7 @@ const AppLayout = () => {
             </Nav>
             <Form className="d-flex" onSubmit={searchByKeyword}>
               <Form.Control
+                ref={inputValueRef}
                 type="search"
                 placeholder="Search"
                 className="me-2"

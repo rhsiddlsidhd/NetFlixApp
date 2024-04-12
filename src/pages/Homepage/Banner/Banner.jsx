@@ -1,17 +1,32 @@
 import React from "react";
 import { usePopularMoviesQuery } from "../../../hooks/usePopularMovie";
-import Alert from "react-bootstrap/Alert";
 import "./Banner.style.css";
-
+import { Navigate } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 const Banner = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
 
   if (isLoading) {
-    <h1>Loading...</h1>;
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          backgroundColor: "black",
+        }}
+      >
+        <Spinner animation="border" />
+      </div>
+    );
   }
+
   if (isError) {
-    <Alert variant="danger">{error.message}</Alert>;
+    return <Navigate to="/not-found" error={error} replace />;
   }
+
   return (
     <div className="banner_wrapper">
       <div

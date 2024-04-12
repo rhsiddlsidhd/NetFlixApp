@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Container } from "../../components/Container/Container.style";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import { useSearchParams } from "react-router-dom";
-import { Alert } from "bootstrap";
+import { Navigate } from "react-router-dom";
 import * as S from "./MoviePage.style";
 import { Badge } from "react-bootstrap";
 import { useMoviesGenresQuery } from "../../hooks/useMovieListGenres";
 import Pagenation from "../../common/Pagenation/Pagenation";
 import { useNavigate } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 
 //경로 2가지
 //nav 바에서 클릭해서 온경우 => popularMovie 보여주기
@@ -20,7 +21,7 @@ const MoviePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageGroup, setPageGroup] = useState(1);
 
-  const navagate = useNavigate();
+  const navigate = useNavigate();
 
   const { data, isError, isLoading, error } = useSearchMovieQuery({
     keyword,
@@ -43,10 +44,24 @@ const MoviePage = () => {
   const { data: genreData } = useMoviesGenresQuery();
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          backgroundColor: "black",
+        }}
+      >
+        <Spinner animation="border" />
+      </div>
+    );
   }
+
   if (isError) {
-    return <Alert varient="danger">{error.message}</Alert>;
+    return <Navigate to="/not-found" error={error} replace />;
   }
 
   const showGenre = (genreIdList) => {
@@ -62,7 +77,7 @@ const MoviePage = () => {
   };
 
   const handleMoviePageNavigate = (id) => {
-    navagate(`/movies/${id}`);
+    navigate(`/movies/${id}`);
   };
 
   return (

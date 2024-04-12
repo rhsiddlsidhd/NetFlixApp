@@ -1,17 +1,32 @@
 import React from "react";
 import { useTopRatedUseQuery } from "../../../hooks/useTopRatedMovie";
-import { Alert } from "bootstrap";
+
 import MovieSlider from "../../../common/MovieSlider/MovieSlider";
 import { responsive } from "../../../constants/responsive";
-
+import { Navigate } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 const TopRatedMoviesSlide = () => {
   const { data, isError, error, isLoading } = useTopRatedUseQuery();
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          backgroundColor: "black",
+        }}
+      >
+        <Spinner animation="border" />
+      </div>
+    );
   }
+
   if (isError) {
-    return <Alert varient="danger">{error.message}</Alert>;
+    return <Navigate to="/not-found" error={error} replace />;
   }
 
   return (

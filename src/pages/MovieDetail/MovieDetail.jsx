@@ -2,10 +2,11 @@ import React from "react";
 import { Container } from "../../components/Container/Container.style";
 import { useMovieDetailQuery } from "../../hooks/useMovieDetails";
 import { useParams } from "react-router-dom";
-import { Alert } from "bootstrap";
 import * as S from "./MovieDetail.style";
 import MovieInfo from "../../components/MovieDetail/MovieInfo";
 import MovieReviews from "./../../components/MovieDetail/MovieReviews";
+import { Navigate } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 
 /**
  * 영화 포스터
@@ -27,10 +28,24 @@ const MovieDetail = () => {
   const { data, isLoading, isError, error } = useMovieDetailQuery(id);
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          backgroundColor: "black",
+        }}
+      >
+        <Spinner animation="border" />
+      </div>
+    );
   }
+
   if (isError) {
-    return <Alert varient="danger">{error.message}</Alert>;
+    return <Navigate to="/not-found" error={error} replace />;
   }
 
   const {

@@ -222,12 +222,8 @@ export const Review = styled.div`
     margin-bottom: 2rem;
   }
 `;
-export const ReviewBoard = styled.div`
-  width: 100%;
-`;
 
-export const ReviewItem = styled.div`
-  width: 100%;
+export const ReviewBoard = styled.div`
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -241,4 +237,9 @@ export const Item = styled.div`
   border: 3px solid red;
   border-radius: 10px;
   margin-bottom: 2rem;
+  > h1,
+  div {
+    color: white;
+    margin: 1rem;
+  }
 `;
