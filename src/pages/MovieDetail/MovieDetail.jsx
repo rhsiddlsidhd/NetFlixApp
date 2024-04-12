@@ -328,7 +328,6 @@ const InfoEtc = styled.div`
   display: flex;
   @media screen and (max-width: 767px) {
     width: 100%;
-
     margin-top: 2rem;
     min-height: 150px;
     flex-direction: column;
@@ -344,6 +343,7 @@ const InfoLeft = styled.div`
 
   @media screen and (max-width: 767px) {
     justify-content: space-between;
+    width: 100%;
   }
 `;
 
@@ -356,6 +356,7 @@ const InfoRight = styled.div`
 
   @media screen and (max-width: 767px) {
     justify-content: space-between;
+    width: 100%;
   }
 `;
 
