@@ -3,11 +3,10 @@ import { Container } from "../../components/Container/Container.style";
 import { useMovieDetailQuery } from "../../hooks/useMovieDetails";
 import { useParams } from "react-router-dom";
 import { Alert } from "bootstrap";
-import { styled } from "styled-components";
-import Stack from "react-bootstrap/Stack";
-import { Badge } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+import * as S from "./MovieDetail.style";
+import MovieInfo from "../../components/MovieDetail/MovieInfo";
+import MovieReviews from "./../../components/MovieDetail/MovieReviews";
+
 /**
  * 영화 포스터
  * 영화 제목
@@ -60,337 +59,40 @@ const MovieDetail = () => {
 
   return (
     <Container>
-      <IntroduceWrapper>
-        <Backdrop
+      <S.IntroduceWrapper>
+        <S.Backdrop
           $backdroppath={`https://media.themoviedb.org/t/p/w1920_and_h600_multi_faces/${backdrop_path}`}
         >
-          <Bottomlayout />
-        </Backdrop>
-        <CenterContainer>
-          <Introduce>
-            <MovieImgGuideWrapper>
-              <MovieImg>
-                <Img
+          <S.Bottomlayout />
+        </S.Backdrop>
+        <S.CenterContainer>
+          <S.Introduce>
+            <S.MovieImgGuideWrapper>
+              <S.MovieImg>
+                <S.Img
                   $posterppath={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster_path}`}
-                ></Img>
-              </MovieImg>
-              <MovieGuide>
-                <InfoTag>
-                  <Stack
-                    direction="horizontal"
-                    gap={2}
-                    style={{ width: "100%", flexWrap: "wrap", height: "25%" }}
-                  >
-                    {genres?.map((it, index) => {
-                      return (
-                        <Badge bg="danger" key={index}>
-                          {it.name}
-                        </Badge>
-                      );
-                    })}
-                  </Stack>
-                  <div className="info_title">
-                    <div>{title}</div>
-                    {adult ? (
-                      <Badge className="age" bg="danger">
-                        18 +
-                      </Badge>
-                    ) : (
-                      <Badge className="age" bg="primary">
-                        18 -{" "}
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="info_tagline">{tagline}</div>
-                </InfoTag>
-                <InfoLike>
-                  <div>
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faStar}
-                        style={{ color: "yellow" }}
-                      />
-                    </div>
-                    <div style={{ color: "white", marginLeft: "0.5rem" }}>
-                      {vote_average.toFixed(1)}
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        style={{ color: "red" }}
-                      />
-                    </div>
-                    <div style={{ color: "white", marginLeft: "0.5rem" }}>
-                      {popularity.toFixed(1)}
-                    </div>
-                  </div>
-                </InfoLike>
-                <InfoEtcWrapper>
-                  <InfoEtc>
-                    <InfoLeft>
-                      {etcBadge.map((it, index) => {
-                        if (index % 2 === 0) {
-                          return (
-                            <InfoItem>
-                              <Badge className="badge" bg="danger">
-                                {it}
-                              </Badge>
-                              <div className="badge_text">
-                                {dataTextMap[it]}
-                              </div>
-                            </InfoItem>
-                          );
-                        }
-                        return null;
-                      })}
-                    </InfoLeft>
-                    <InfoRight>
-                      {etcBadge.map((it, index) => {
-                        if (index % 2 !== 0) {
-                          return (
-                            <InfoItem>
-                              <Badge className="badge" bg="danger">
-                                {it}
-                              </Badge>
-                              <div className="badge_text">
-                                {dataTextMap[it]}
-                              </div>
-                            </InfoItem>
-                          );
-                        }
-                        return null;
-                      })}
-                    </InfoRight>
-                  </InfoEtc>
-                </InfoEtcWrapper>
-              </MovieGuide>
-            </MovieImgGuideWrapper>
-            <MovieOverviewWrapper>{overview}</MovieOverviewWrapper>
-          </Introduce>
-        </CenterContainer>
-        <Review>Review</Review>
-      </IntroduceWrapper>
+                ></S.Img>
+              </S.MovieImg>
+              <MovieInfo
+                value={{
+                  dataTextMap,
+                  etcBadge,
+                  genres,
+                  title,
+                  tagline,
+                  vote_average,
+                  popularity,
+                  adult,
+                }}
+              />
+            </S.MovieImgGuideWrapper>
+            <S.MovieOverviewWrapper>{overview}</S.MovieOverviewWrapper>
+          </S.Introduce>
+        </S.CenterContainer>
+      </S.IntroduceWrapper>
+      <MovieReviews id={id} />
     </Container>
   );
 };
 
 export default MovieDetail;
-const IntroduceWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  @media screen and (max-width: 767px) {
-    height: 100%;
-  }
-`;
-const Backdrop = styled.div`
-  height: 35vh;
-  background-image: url(${(props) => props.$backdroppath});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-`;
-
-const Bottomlayout = styled.div`
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, black, transparent 90%);
-`;
-
-const CenterContainer = styled.div`
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const Introduce = styled.div`
-  width: 80%;
-  height: 80%;
-
-  @media screen and (max-width: 767px) {
-    height: 75%;
-  }
-`;
-
-const MovieImgGuideWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 60%;
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-    height: 70%;
-  }
-`;
-const MovieImg = styled.div`
-  width: 300px;
-
-  position: relative;
-
-  @media screen and (max-width: 767px) {
-    height: 50%;
-    min-height: 200px;
-  }
-`;
-
-const Img = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: -2rem;
-  background: url(${(props) => props.$posterppath});
-  background-repeat: no-repeat;
-  background-size: contain;
-`;
-const MovieGuide = styled.div`
-  width: 60%;
-  margin-left: 1rem;
-
-  @media screen and (max-width: 767px) {
-    width: 100%;
-    height: 50%;
-
-    margin-left: 0rem;
-  }
-`;
-
-const InfoTag = styled.div`
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-
-  .info_title {
-    display: flex;
-    align-items: center;
-    color: white;
-    height: 40%;
-    @media screen and (max-width: 767px) {
-      /*  */
-      margin-top: 1rem;
-    }
-
-    > div {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-    > .age {
-      margin-left: 1rem;
-    }
-  }
-  .info_tagline {
-    font-size: 0.8rem;
-    color: white;
-    height: 35%;
-  }
-  @media screen and (max-width: 767px) {
-    height: 55%;
-  }
-`;
-
-const InfoLike = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 10%;
-
-  > div {
-    margin-right: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  @media screen and (max-width: 767px) {
-    /*  */
-    margin-top: 2rem;
-  }
-`;
-
-const InfoEtcWrapper = styled.div`
-  width: 100%;
-  height: 30%;
-
-  display: flex;
-`;
-
-const InfoEtc = styled.div`
-  width: 400px;
-
-  height: 100%;
-  display: flex;
-  @media screen and (max-width: 767px) {
-    width: 100%;
-    margin-top: 2rem;
-    min-height: 150px;
-    flex-direction: column;
-  }
-`;
-
-const InfoLeft = styled.div`
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @media screen and (max-width: 767px) {
-    justify-content: space-between;
-    width: 100%;
-  }
-`;
-
-const InfoRight = styled.div`
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @media screen and (max-width: 767px) {
-    justify-content: space-between;
-    width: 100%;
-  }
-`;
-
-const InfoItem = styled.div`
-  display: flex;
-  margin-bottom: 1rem;
-  color: white;
-
-  .badge {
-    display: flex;
-    height: 100%;
-    margin-right: 0.5rem;
-
-    @media screen and (max-width: 767px) {
-      margin-bottom: 0;
-    }
-  }
-  .badge_text {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    font-size: 0.725rem;
-  }
-`;
-
-const MovieOverviewWrapper = styled.div`
-  height: 100%;
-  color: white;
-
-  @media screen and (max-width: 767px) {
-    height: 30%;
-  }
-`;
-
-const Review = styled.div`
-  height: 35%;
-`;

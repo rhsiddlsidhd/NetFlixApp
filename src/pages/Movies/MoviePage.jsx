@@ -7,6 +7,7 @@ import * as S from "./MoviePage.style";
 import { Badge } from "react-bootstrap";
 import { useMoviesGenresQuery } from "../../hooks/useMovieListGenres";
 import Pagenation from "../../common/Pagenation/Pagenation";
+import { useNavigate } from "react-router-dom";
 
 //경로 2가지
 //nav 바에서 클릭해서 온경우 => popularMovie 보여주기
@@ -18,6 +19,8 @@ const MoviePage = () => {
   const keyword = query.get("q");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageGroup, setPageGroup] = useState(1);
+
+  const navagate = useNavigate();
 
   const { data, isError, isLoading, error } = useSearchMovieQuery({
     keyword,
@@ -58,6 +61,10 @@ const MoviePage = () => {
     return genreNameList;
   };
 
+  const handleMoviePageNavigate = (id) => {
+    navagate(`/movies/${id}`);
+  };
+
   return (
     <Container>
       <div>
@@ -75,7 +82,10 @@ const MoviePage = () => {
           {data.results.map((it, index) => {
             return (
               <S.KeyWordItem key={index}>
-                <div className="img_wrapper">
+                <div
+                  className="img_wrapper"
+                  onClick={() => handleMoviePageNavigate(it.id)}
+                >
                   <img
                     src={`https://media.themoviedb.org/t/p/w94_and_h141_bestv2${it.poster_path}`}
                     alt="이미지"
