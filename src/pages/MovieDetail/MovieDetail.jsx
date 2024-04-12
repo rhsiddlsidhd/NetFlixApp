@@ -50,7 +50,7 @@ const MovieDetail = () => {
     overview,
   } = data;
 
-  const etcBadge = ["Budget", "Revenue", "ReleaseDate", "Runtime"];
+  const etcBadge = ["Budget", "Revenue", "Runtime", "ReleaseDate"];
   const dataTextMap = {
     Budget: "$" + budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
     Revenue: "$" + revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
@@ -60,123 +60,130 @@ const MovieDetail = () => {
 
   return (
     <Container>
-      <MovieIntroduceWrapper>
-        <MovieBackdrop
+      <IntroduceWrapper>
+        <Backdrop
           $backdroppath={`https://media.themoviedb.org/t/p/w1920_and_h600_multi_faces/${backdrop_path}`}
         >
           <Bottomlayout />
-        </MovieBackdrop>
-        <MovieIntroduce>
-          <div>
-            <MovieDescription>
-              <PosterBox>
-                <Poster
-                  $posterppath={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster_path}`}
-                ></Poster>
-              </PosterBox>
-
-              <Info>
-                <InfoTag>
-                  <Stack
-                    direction="horizontal"
-                    gap={1}
-                    style={{ width: "100%", flexWrap: "wrap", height: "25%" }}
-                  >
-                    {genres?.map((it, index) => {
-                      return (
-                        <Badge bg="danger" key={index}>
-                          {it.name}
-                        </Badge>
-                      );
-                    })}
-                  </Stack>
-                  <div className="info_title">
-                    <div>{title}</div>
-                    {adult ? (
-                      <Badge className="age" bg="danger">
-                        18 +
-                      </Badge>
-                    ) : (
-                      <Badge className="age" bg="primary">
-                        18 -{" "}
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="info_tagline">{tagline}</div>
-                </InfoTag>
-                <InfoLike>
-                  <div>
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faStar}
-                        style={{ color: "yellow" }}
-                      />
-                    </div>
-                    <div style={{ color: "white", marginLeft: "0.5rem" }}>
-                      {vote_average.toFixed(1)}
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        style={{ color: "red" }}
-                      />
-                    </div>
-                    <div style={{ color: "white", marginLeft: "0.5rem" }}>
-                      {popularity.toFixed(1)}
-                    </div>
-                  </div>
-                </InfoLike>
-                <InfoEtcWrapper>
-                  {etcBadge.map((it, index) => {
+        </Backdrop>
+        <Introduce>
+          <MovieImgGuideWrapper>
+            <MovieImg>
+              <Img
+                $posterppath={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster_path}`}
+              ></Img>
+            </MovieImg>
+            <MovieGuide>
+              <InfoTag>
+                <Stack
+                  direction="horizontal"
+                  gap={2}
+                  style={{ width: "100%", flexWrap: "wrap", height: "25%" }}
+                >
+                  {genres?.map((it, index) => {
                     return (
-                      <InfoEtc>
-                        <Badge key={index} className="badge" bg="danger">
-                          {it}
-                        </Badge>
-                        <div style={{ color: "white" }}>{dataTextMap[it]}</div>
-                      </InfoEtc>
+                      <Badge bg="danger" key={index}>
+                        {it.name}
+                      </Badge>
                     );
                   })}
-                </InfoEtcWrapper>
-              </Info>
-            </MovieDescription>
-            <MovieOverview>{overview}</MovieOverview>
-          </div>
-        </MovieIntroduce>
-        <MovieReviewWrapper>123</MovieReviewWrapper>
-      </MovieIntroduceWrapper>
+                </Stack>
+                <div className="info_title">
+                  <div>{title}</div>
+                  {adult ? (
+                    <Badge className="age" bg="danger">
+                      18 +
+                    </Badge>
+                  ) : (
+                    <Badge className="age" bg="primary">
+                      18 -{" "}
+                    </Badge>
+                  )}
+                </div>
+                <div className="info_tagline">{tagline}</div>
+              </InfoTag>
+              <InfoLike>
+                <div>
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      style={{ color: "yellow" }}
+                    />
+                  </div>
+                  <div style={{ color: "white", marginLeft: "0.5rem" }}>
+                    {vote_average.toFixed(1)}
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
+                  </div>
+                  <div style={{ color: "white", marginLeft: "0.5rem" }}>
+                    {popularity.toFixed(1)}
+                  </div>
+                </div>
+              </InfoLike>
+              <InfoEtcWrapper>
+                <InfoEtc>
+                  <InfoLeft>
+                    {etcBadge.map((it, index) => {
+                      if (index % 2 === 0) {
+                        return (
+                          <InfoItem>
+                            <Badge className="badge" bg="danger">
+                              {it}
+                            </Badge>
+                            <div className="badge_text">{dataTextMap[it]}</div>
+                          </InfoItem>
+                        );
+                      }
+                      return null;
+                    })}
+                  </InfoLeft>
+                  <InfoRight>
+                    {etcBadge.map((it, index) => {
+                      if (index % 2 !== 0) {
+                        return (
+                          <InfoItem>
+                            <Badge className="badge" bg="danger">
+                              {it}
+                            </Badge>
+                            <div className="badge_text">{dataTextMap[it]}</div>
+                          </InfoItem>
+                        );
+                      }
+                      return null;
+                    })}
+                  </InfoRight>
+                </InfoEtc>
+              </InfoEtcWrapper>
+            </MovieGuide>
+          </MovieImgGuideWrapper>
+          <MovieOverviewWrapper>{overview}</MovieOverviewWrapper>
+        </Introduce>
+        <Review>Review</Review>
+      </IntroduceWrapper>
     </Container>
   );
 };
 
 export default MovieDetail;
-
-const MovieIntroduceWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
+const IntroduceWrapper = styled.div`
   display: flex;
   flex-direction: column;
-
   @media screen and (max-width: 767px) {
-    height: 120vh;
-    min-height: 120vh;
+    min-width: 300px;
   }
 `;
-
-const MovieBackdrop = styled.div`
-  height: 35%;
+const Backdrop = styled.div`
+  height: 35vh;
   background-image: url(${(props) => props.$backdroppath});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
-
-  @media screen and (max-width: 767px) {
-    height: 30vh;
-  }
 `;
+
 const Bottomlayout = styled.div`
   position: absolute;
   left: 0;
@@ -185,45 +192,36 @@ const Bottomlayout = styled.div`
   background: linear-gradient(to top, black, transparent 90%);
 `;
 
-const MovieIntroduce = styled.div`
-  height: 65%;
-  display: flex;
-  justify-content: center;
-
-  > div {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-  }
-  @media screen and (max-width: 767px) {
-    height: 100vh;
-  }
-`;
-
-const MovieDescription = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
+const Introduce = styled.div`
+  height: 80vh;
 
   @media screen and (max-width: 767px) {
-    flex-direction: column;
-    height: 90vh;
+    height: 75vh;
     min-width: 300px;
   }
 `;
 
-const PosterBox = styled.div`
+const MovieImgGuideWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 60%;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    height: 70%;
+  }
+`;
+const MovieImg = styled.div`
+  width: 300px;
   min-width: 300px;
-  height: 100%;
   position: relative;
 
   @media screen and (max-width: 767px) {
-    height: 50vh;
+    height: 50%;
+    min-height: 200px;
   }
 `;
 
-const Poster = styled.div`
+const Img = styled.div`
   min-width: 300px;
   height: 100%;
   position: absolute;
@@ -232,20 +230,20 @@ const Poster = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
 `;
-
-const Info = styled.div`
-  width: calc(90% - 300px);
+const MovieGuide = styled.div`
+  width: 60%;
+  margin-left: 1rem;
 
   @media screen and (max-width: 767px) {
     width: 100%;
-    height: 100%;
-    min-height: 300px;
+    height: 50%;
+
+    margin-left: 0rem;
   }
 `;
 
 const InfoTag = styled.div`
-  width: 100%;
-  height: 50%;
+  height: 60%;
   display: flex;
   flex-direction: column;
 
@@ -271,53 +269,95 @@ const InfoTag = styled.div`
     color: white;
     height: 35%;
   }
+  @media screen and (max-width: 767px) {
+    height: 55%;
+  }
 `;
 
 const InfoLike = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
-  height: 5%;
-  margin-bottom: 1rem;
+  height: 10%;
+
   > div {
     margin-right: 1rem;
     display: flex;
     flex-wrap: wrap;
   }
-  @media screen and (max-width: 767px) {
-    justify-content: center;
-  }
 `;
 
 const InfoEtcWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 30%;
-  margin-bottom: 1rem;
+  display: flex;
 `;
 
 const InfoEtc = styled.div`
+  width: 50%;
+  min-width: 400px;
+  height: 100%;
+
   display: flex;
-  align-items: center; /* 수직 가운데 정렬 */
-  margin-bottom: 0.5rem;
-  > div:last-child {
-    margin-left: 1rem;
+  @media screen and (max-width: 767px) {
+    min-width: 300px;
+    width: 100%;
   }
 `;
 
-const MovieOverview = styled.div`
-  height: 40%;
-  min-height: 30vh;
-
-  flex: 1; /* 부모 컨테이너의 남은 공간을 채움 */
+const InfoLeft = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @media screen and (max-width: 767px) {
-    min-height: 25vh;
-    min-width: 300px;
+    justify-content: space-between;
   }
 `;
 
-const MovieReviewWrapper = styled.div`
-  height: 100vh;
-  background-color: red;
+const InfoRight = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media screen and (max-width: 767px) {
+    justify-content: space-between;
+  }
+`;
+
+const InfoItem = styled.div`
+  display: flex;
+  margin-bottom: 1rem;
+  color: white;
+
+  .badge {
+    display: flex;
+    height: 100%;
+    margin-right: 0.5rem;
+
+    @media screen and (max-width: 767px) {
+      margin-bottom: 0;
+    }
+  }
+  .badge_text {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-size: 0.725rem;
+  }
+`;
+
+const MovieOverviewWrapper = styled.div`
+  height: 40%;
+  color: white;
+  @media screen and (max-width: 767px) {
+    height: 30%;
+  }
+`;
+
+const Review = styled.div`
+  height: 35vh;
 `;
