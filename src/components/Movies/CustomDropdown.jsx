@@ -11,8 +11,11 @@ const CustomDropdown = ({
   displayData,
   filterGenreIds,
   genreData,
+  handleFilter,
+  setCurrentPage,
 }) => {
   const handleSortType = (sortType) => {
+    setCurrentPage(1);
     setSortType(sortType);
     if (sortType === "LowPopularity") {
       const sortedData = handleLowSort(data);
@@ -36,26 +39,6 @@ const CustomDropdown = ({
     });
 
     return genreNameList;
-  };
-
-  /**
-   * 장르 id와 일치하는 name을 전부 필터로 가져왔고
-   *
-   * 해당 name 에 해당하는 id 값을 데이터에 일치시켜서 그것만 보여주면됨
-   *
-   * handle로 데이터를 가져오지 못하는 상황
-   * id만 가져와서 인수 두개 받는 함수로 재 실행해서 set
-   */
-
-  const handleFilterId = (id) => {
-    console.log(data);
-
-    // console.log("요기");
-    // const filteredData = [...data.results].filter((movie) => {
-    //   return movie.genre_ids.includes(selectedGenreId);
-    // });
-
-    // setDisplayData(filteredData);
   };
 
   if (title === "정렬") {
@@ -95,15 +78,12 @@ const CustomDropdown = ({
                 <Dropdown.Item
                   key={index}
                   href="#"
-                  onClick={() => handleFilterId(filterGenreIds[index])}
+                  onClick={() => handleFilter(filterGenreIds[index])}
                 >
                   {it}
                 </Dropdown.Item>
               );
             })}
-          {/* <Dropdown.Item href="#">필터</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
         </Dropdown.Menu>
       </Dropdown>
     );

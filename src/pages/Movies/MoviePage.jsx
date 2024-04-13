@@ -67,6 +67,7 @@ const MoviePage = () => {
     keyword,
     currentPage,
   });
+  const { data: genreData } = useMoviesGenresQuery();
 
   useEffect(() => {
     if (data && data.results) {
@@ -88,7 +89,19 @@ const MoviePage = () => {
     }
   }, [data]);
 
-  const { data: genreData } = useMoviesGenresQuery();
+  const handleFilter = (selectedGenreId) => {
+    setCurrentPage(1);
+    if (!data) {
+      return [];
+    }
+
+    const filteredData = data.results.filter((movie) =>
+      movie.genre_ids.includes(selectedGenreId)
+    );
+
+    setDisplayData(filteredData);
+  };
+
   if (isLoading) {
     return (
       <div
@@ -140,11 +153,13 @@ const MoviePage = () => {
               setSortType={setSortType}
               sortType={sortType}
               displayData={displayData}
+              setCurrentPage={setCurrentPage}
             />
             <CustomDropdown
               title="필터"
               filterGenreIds={filterGenreIds}
               genreData={genreData}
+              handleFilter={handleFilter}
             />
           </S.DropdownWrapper>
         </S.KeywordHeader>
