@@ -11,9 +11,7 @@ const MovieNewCard = ({ movie }) => {
     <MovieMiniCardWrapper
       $RecommendationPosterPath={`https://media.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
       onClick={() => handleMovieDetailPage(movie.id)}
-    >
-      {/* <MiniCardOverlay></MiniCardOverlay> */}
-    </MovieMiniCardWrapper>
+    ></MovieMiniCardWrapper>
   );
 };
 
@@ -37,14 +35,3 @@ const MovieMiniCardWrapper = styled.div`
     width: 250px;
   }
 `;
-
-// const MiniCardOverlay = styled.div`
-//   height: 100%;
-//   width: 100%;
-//   position: absolute;
-//   background: linear-gradient(to top, #000000b9, transparent);
-//   opacity: 0;
-//   &:hover {
-//     opacity: 1;
-//   }
-// `;

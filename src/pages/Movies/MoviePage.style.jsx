@@ -27,6 +27,7 @@ export const KeyWordItem = styled.div`
     > img {
       height: 100%;
       border: 5px solid white;
+      cursor: pointer;
     }
   }
   > .keyword_introduce {

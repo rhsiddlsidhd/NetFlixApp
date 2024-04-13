@@ -1,9 +1,9 @@
 import React from "react";
-import { useMovieRecommendationsQuery } from "../../hooks/useMovieRecommendations";
+import { useMovieRecommendationsQuery } from "../../../hooks/useMovieRecommendations";
 import Spinner from "react-bootstrap/Spinner";
 import { Navigate } from "react-router-dom";
-import * as S from "./../../pages/MovieDetail/MovieDetail.style";
-import MovieNewCard from "../../common/MovieNewCard/MovieNewCard";
+import * as S from "../../../pages/MovieDetail/MovieDetail.style";
+import MovieNewCard from "../../../common/MovieNewCard/MovieNewCard";
 
 const MovieRecommendation = ({ id }) => {
   const { data, isLoading, isError, error } = useMovieRecommendationsQuery(id);

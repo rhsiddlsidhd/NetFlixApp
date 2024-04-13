@@ -1,6 +1,6 @@
 import React from "react";
-import * as S from "./../../pages/MovieDetail/MovieDetail.style";
-import { useMovieReviewsQuery } from "../../hooks/useMovieReview.js";
+import * as S from "../../../pages/MovieDetail/MovieDetail.style.jsx";
+import { useMovieReviewsQuery } from "../../../hooks/useMovieReview.js";
 import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 

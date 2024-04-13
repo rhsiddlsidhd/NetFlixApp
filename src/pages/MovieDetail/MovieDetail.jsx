@@ -4,10 +4,11 @@ import { useMovieDetailQuery } from "../../hooks/useMovieDetails";
 import { useParams } from "react-router-dom";
 import * as S from "./MovieDetail.style";
 import MovieInfo from "../../components/MovieDetail/MovieInfo";
-import MovieReviews from "./../../components/MovieDetail/MovieReviews";
+import MovieReviews from "../../components/MovieDetail/Reviews/MovieReviews";
 import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
-import MovieRecommendation from "../../components/MovieDetail/MovieRecommendation";
+import MovieRecommendation from "../../components/MovieDetail/Recommendation/MovieRecommendation";
+import MoviePreview from "../../components/MovieDetail/Preview/MoviePreview";
 
 /**
  * 영화 포스터
@@ -111,6 +112,7 @@ const MovieDetail = () => {
           </S.Introduce>
         </S.CenterContainer>
       </S.IntroduceWrapper>
+
       <S.TabBtnWrapper>
         <S.ReviewsTab
           onClick={() => handleTabClick("reviews")}
@@ -124,9 +126,23 @@ const MovieDetail = () => {
         >
           Recommendation
         </S.RecommendationTab>
+        <S.PreviewTab
+          onClick={() => handleTabClick("preview")}
+          className={activeTab === "preview" ? "active" : ""}
+        >
+          예고편보기
+          {/* <Button
+            variant="danger"
+            onClick={() => setModalShow(true)}
+            style={{ backgroundColor: "transparent" }}
+          >
+            Preview
+          </Button> */}
+        </S.PreviewTab>
       </S.TabBtnWrapper>
       {activeTab === "reviews" && <MovieReviews id={id} />}
       {activeTab === "Recommendation" && <MovieRecommendation id={id} />}
+      {activeTab === "preview" && <MoviePreview id={id} />}
     </Container>
   );
 };
