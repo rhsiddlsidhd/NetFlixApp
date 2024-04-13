@@ -7,3 +7,14 @@
 - 유저는 영화를 검색할 수 있다.
 - 유저는 장르별로 영화를 필터링 할 수 있다.
 - 유저는 영화 날짜별로 필터링 할 수 있다.
+
+
+
+css 라이브러리 Bootstrap
+
+javascript 라이브러리 axios 
+
+react 라이브러리 react-router, react-query
+
+axios 와 fetch 의 차이점
+
