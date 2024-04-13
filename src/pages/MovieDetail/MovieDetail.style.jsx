@@ -244,6 +244,7 @@ export const Item = styled.div`
   .cotent {
     color: white;
     margin: 1rem;
+    word-wrap: break-word;
   }
 `;
 
