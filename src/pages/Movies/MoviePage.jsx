@@ -60,6 +60,7 @@ const MoviePage = () => {
   const [sortType, setSortType] = useState("");
   const [displayData, setDisplayData] = useState(null);
   const [filterGenreIds, setFilterGenreIds] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("");
 
   const navigate = useNavigate();
 
@@ -92,6 +93,7 @@ const MoviePage = () => {
 
   const handleFilter = (selectedGenreId) => {
     setCurrentPage(1);
+    setSelectedFilter(selectedGenreId);
     if (!data) {
       return [];
     }
@@ -99,7 +101,6 @@ const MoviePage = () => {
     const filteredData = data.results.filter((movie) =>
       movie.genre_ids.includes(selectedGenreId)
     );
-
     setDisplayData(filteredData);
   };
 
@@ -161,6 +162,7 @@ const MoviePage = () => {
               filterGenreIds={filterGenreIds}
               genreData={genreData}
               handleFilter={handleFilter}
+              selectedFilter={selectedFilter}
             />
           </S.DropdownWrapper>
         </S.KeywordHeader>

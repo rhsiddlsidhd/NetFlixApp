@@ -2,6 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import "./CustomDropdown.style.css";
 import { handleLowSort, handleHighSort } from "../../utils/sort";
+
 const CustomDropdown = ({
   title,
   data,
@@ -13,6 +14,7 @@ const CustomDropdown = ({
   genreData,
   handleFilter,
   setCurrentPage,
+  selectedFilter,
 }) => {
   const handleSortType = (sortType) => {
     setCurrentPage(1);
@@ -29,6 +31,25 @@ const CustomDropdown = ({
     }
   };
 
+  const getTitle = () => {
+    if (title === "정렬") {
+      if (sortType === "LowPopularity") {
+        return "내림차순";
+      }
+      if (sortType === "HighPopularity") {
+        return "오름차순";
+      }
+      return "정렬";
+    } else if (title === "필터") {
+      if (selectedFilter) {
+        const filterName = getSelectedFilterName(selectedFilter);
+        return filterName ? filterName : "필터";
+      } else {
+        return "필터";
+      }
+    }
+  };
+
   const showGenre = (genreIdList) => {
     if (!genreIdList) {
       return [];
@@ -41,11 +62,16 @@ const CustomDropdown = ({
     return genreNameList;
   };
 
+  const getSelectedFilterName = (filterId) => {
+    const genreObj = genreData.find((genre) => genre.id === filterId);
+    return genreObj ? genreObj.name : "";
+  };
+
   if (title === "정렬") {
     return (
       <Dropdown>
         <Dropdown.Toggle variant="dark" id="dropdown-basic">
-          {title}
+          {getTitle()}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -68,7 +94,7 @@ const CustomDropdown = ({
     return (
       <Dropdown>
         <Dropdown.Toggle variant="dark" id="dropdown-basic">
-          {title}
+          {getTitle()}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
