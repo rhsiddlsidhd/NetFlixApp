@@ -13,7 +13,6 @@ export const NotFoundpage = (error) => {
             alt="이미지"
             className="error_icon"
           />
-          <h1 className="error_status"></h1>
           <h2 className="error_message">{error && error.error.message}</h2>
         </div>
         <div className="error_text"></div>

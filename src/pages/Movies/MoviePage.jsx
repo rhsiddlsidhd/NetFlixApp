@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Container } from "../../components/Container/Container.style";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import { useSearchParams } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import * as S from "./MoviePage.style";
 import { Badge } from "react-bootstrap";
 import { useMoviesGenresQuery } from "../../hooks/useMovieListGenres";
