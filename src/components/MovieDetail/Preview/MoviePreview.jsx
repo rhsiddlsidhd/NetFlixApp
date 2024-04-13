@@ -10,7 +10,7 @@ function MyVerticallyCenteredModal(props) {
   const { data } = useMoviePreviewQuery(props.id.id);
 
   const opts = {
-    height: "600px",
+    height: "500px",
     width: "100%",
   };
   const onPlayerReady = (event) => {
