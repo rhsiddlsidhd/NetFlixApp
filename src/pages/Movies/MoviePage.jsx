@@ -69,23 +69,43 @@ const MoviePage = () => {
   });
   const { data: genreData } = useMoviesGenresQuery();
 
+  // useEffect(() => {
+  //   if (data && data.results) {
+  //     setDisplayData(data.results);
+
+  //     const newGenreIds = data.results.reduce(
+  //       (acc, it) => {
+  //         it.genre_ids.forEach((genreId) => {
+  //           if (!acc.includes(genreId)) {
+  //             acc.push(genreId);
+  //           }
+  //         });
+  //         return acc;
+  //       },
+  //       [...filterGenreIds]
+  //     );
+
+  //     setFilterGenreIds(newGenreIds);
+  //   }
+  // }, [data]);
   useEffect(() => {
     if (data && data.results) {
       setDisplayData(data.results);
 
-      const newGenreIds = data.results.reduce(
-        (acc, it) => {
-          it.genre_ids.forEach((genreId) => {
-            if (!acc.includes(genreId)) {
-              acc.push(genreId);
-            }
-          });
-          return acc;
-        },
-        [...filterGenreIds]
-      );
-
-      setFilterGenreIds(newGenreIds);
+      setFilterGenreIds((prevGenreIds) => {
+        const newGenreIds = data.results.reduce(
+          (acc, it) => {
+            it.genre_ids.forEach((genreId) => {
+              if (!acc.includes(genreId)) {
+                acc.push(genreId);
+              }
+            });
+            return acc;
+          },
+          [...prevGenreIds]
+        );
+        return newGenreIds;
+      });
     }
   }, [data]);
 
