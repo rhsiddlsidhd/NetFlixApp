@@ -23,6 +23,8 @@ import MoviePreview from "../../components/MovieDetail/Preview/MoviePreview";
  * backdrop url 'https://media.themoviedb.org/t/p/w1920_and_h600_multi_faces/rMKFsYeK3LPJGk9xqUHhGdqA4aB.jpg'
  *
  * post url https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xLBbOZCXLxYbtIOjC03dKxLlKqR.jpg
+ *
+ * 1) detailpage 전환시 최상단으로 view
  */
 const MovieDetail = () => {
   const [activeTab, setActiveTab] = useState("reviews");

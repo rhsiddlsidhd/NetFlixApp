@@ -9,6 +9,7 @@ import { useMoviesGenresQuery } from "../../hooks/useMovieListGenres";
 import Pagenation from "../../common/Pagenation/Pagenation";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import CustomDropdown from "../../components/Movies/CustomDropdown";
 
 //경로 2가지
 //nav 바에서 클릭해서 온경우 => popularMovie 보여주기
@@ -39,6 +40,21 @@ const MoviePage = () => {
    * 10그룹 가져오면 50 ~ 55 까지 렌더링
    * (currentGroup - 1 ) * 5 + 1 1그룹시 page 0 2그룹시 page6
    * Math.min(currentGroup * 5, totalPages);
+   */
+
+  /**
+   * 정렬 필터 기능 만들기
+   *
+   * 하나의 컴포넌트로 두가지 버튼을 전부 구현할 예정
+   *
+   * 컴포넌트로 각자의 데이터를 props 로 전달
+   *
+   * props로 components 구성
+   *
+   * moviePage 데이터로 populariity 로 인기도 높 낮이로 인기도 순위 정렬
+   *
+   * moviePage 데이터에 있는 장르들을 전부 가져와서 드롭으로 보여주기
+   *
    */
 
   const { data: genreData } = useMoviesGenresQuery();
@@ -83,16 +99,13 @@ const MoviePage = () => {
   return (
     <Container>
       <div>
-        <h2
-          style={{
-            color: "white",
-            marginLeft: "1rem",
-            paddingTop: "3rem",
-            marginBottom: "3rem",
-          }}
-        >
-          Search results for {keyword ? keyword : "Popular"}
-        </h2>
+        <S.KeywordHeader>
+          <h2>Search results for {keyword ? keyword : "Popular"}</h2>
+          <S.DropdownWrapper>
+            <CustomDropdown title="정렬" />
+            <CustomDropdown title="필터" />
+          </S.DropdownWrapper>
+        </S.KeywordHeader>
         <S.KeyWordBoard>
           {data.results.map((it, index) => {
             return (

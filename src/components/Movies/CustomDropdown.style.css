@@ -1,0 +1,11 @@
+#dropdown-basic {
+  width: 150px;
+  margin-right: 1rem;
+}
+@media screen and (max-width: 767px) {
+  #dropdown-basic {
+    width: fit-content;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

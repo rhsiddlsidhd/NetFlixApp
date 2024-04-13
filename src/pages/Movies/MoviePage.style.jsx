@@ -3,6 +3,42 @@ import { styled } from "styled-components";
 //불편 그자체 스크롤 없애고 히든
 
 // 3줄 이상 그냥 . . .
+export const KeywordHeader = styled.div`
+  width: 100%;
+  height: 150px;
+  display: flex;
+
+  > h2 {
+    color: white;
+    margin-left: 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  @media screen and (max-width: 767px) {
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    > h2 {
+      margin-left: 0;
+      height: 50%;
+    }
+  }
+`;
+
+export const DropdownWrapper = styled.div`
+  width: 400px;
+  margin-right: 2rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 767px) {
+    width: 70%;
+    height: 50%;
+    margin-right: 0;
+  }
+`;
 
 export const KeyWordBoard = styled.div`
   height: fit-content;
@@ -26,7 +62,6 @@ export const KeyWordItem = styled.div`
 
     > img {
       height: 100%;
-      border: 5px solid white;
       cursor: pointer;
     }
   }
