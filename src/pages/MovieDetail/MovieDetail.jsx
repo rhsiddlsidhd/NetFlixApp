@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import * as S from "./MovieDetail.style";
 import MovieInfo from "../../components/MovieDetail/MovieInfo";
 import MovieReviews from "../../components/MovieDetail/Reviews/MovieReviews";
-import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import MovieRecommendation from "../../components/MovieDetail/Recommendation/MovieRecommendation";
 import MoviePreview from "../../components/MovieDetail/Preview/MoviePreview";
@@ -50,7 +49,7 @@ const MovieDetail = () => {
   }
 
   if (isError) {
-    return <Navigate to="/not-found" error={error} replace />;
+    return <h1>Error!! {error.message}</h1>;
   }
 
   const {

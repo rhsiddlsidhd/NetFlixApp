@@ -1,7 +1,6 @@
 import React from "react";
 import { usePopularMoviesQuery } from "../../../hooks/usePopularMovie";
 import "./Banner.style.css";
-import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 const Banner = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
@@ -24,7 +23,7 @@ const Banner = () => {
   }
 
   if (isError) {
-    return <Navigate to="/not-found" error={error} replace />;
+    return <h1>Error!! {error.message}</h1>;
   }
 
   return (

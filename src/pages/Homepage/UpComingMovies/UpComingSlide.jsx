@@ -2,7 +2,6 @@ import React from "react";
 import { useUpComingUseQuery } from "../../../hooks/useUpComingMovie";
 import { responsive } from "./../../../constants/responsive";
 import MovieSlider from "../../../common/MovieSlider/MovieSlider";
-import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 const UpComingSlide = () => {
   const { data, isError, error, isLoading } = useUpComingUseQuery();
@@ -25,7 +24,7 @@ const UpComingSlide = () => {
   }
 
   if (isError) {
-    return <Navigate to="/not-found" error={error} replace />;
+    return <h1>Error!! {error.message}</h1>;
   }
 
   return (

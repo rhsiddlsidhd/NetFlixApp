@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "../../../pages/MovieDetail/MovieDetail.style.jsx";
 import { useMovieReviewsQuery } from "../../../hooks/useMovieReview.js";
-import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 
 /**
@@ -38,7 +37,7 @@ const MovieReviews = ({ id }) => {
   }
 
   if (isError) {
-    return <Navigate to="/not-found" error={error} replace />;
+    return <h1>Error!! {error.message}</h1>;
   }
 
   return (

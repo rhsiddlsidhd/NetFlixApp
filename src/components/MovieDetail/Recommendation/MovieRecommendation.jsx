@@ -1,7 +1,6 @@
 import React from "react";
 import { useMovieRecommendationsQuery } from "../../../hooks/useMovieRecommendations";
 import Spinner from "react-bootstrap/Spinner";
-import { Navigate } from "react-router-dom";
 import * as S from "../../../pages/MovieDetail/MovieDetail.style";
 import MovieNewCard from "../../../common/MovieNewCard/MovieNewCard";
 
@@ -26,7 +25,7 @@ const MovieRecommendation = ({ id }) => {
   }
 
   if (isError) {
-    return <Navigate to="/not-found" error={error} replace />;
+    return <h1>Error!! {error.message}</h1>;
   }
 
   return (

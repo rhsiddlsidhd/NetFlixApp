@@ -3,7 +3,6 @@ import { useTopRatedUseQuery } from "../../../hooks/useTopRatedMovie";
 
 import MovieSlider from "../../../common/MovieSlider/MovieSlider";
 import { responsive } from "../../../constants/responsive";
-import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 const TopRatedMoviesSlide = () => {
   const { data, isError, error, isLoading } = useTopRatedUseQuery();
@@ -26,7 +25,7 @@ const TopRatedMoviesSlide = () => {
   }
 
   if (isError) {
-    return <Navigate to="/not-found" error={error} replace />;
+    return <h1>Error!! {error.message}</h1>;
   }
 
   return (

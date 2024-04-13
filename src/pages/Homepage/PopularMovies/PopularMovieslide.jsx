@@ -2,7 +2,6 @@ import React from "react";
 import { usePopularMoviesQuery } from "../../../hooks/usePopularMovie";
 import MovieSlider from "../../../common/MovieSlider/MovieSlider";
 import { responsive } from "../../../constants/responsive";
-import { Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 const PopularMovieslide = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
@@ -25,7 +24,7 @@ const PopularMovieslide = () => {
   }
 
   if (isError) {
-    return <Navigate to="/not-found" error={error} replace />;
+    return <h1>Error!! {error.message}</h1>;
   }
 
   return (

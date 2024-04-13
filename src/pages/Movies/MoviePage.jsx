@@ -10,6 +10,7 @@ import Pagenation from "../../common/Pagenation/Pagenation";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import CustomDropdown from "../../components/Movies/CustomDropdown";
+import NotFoundpage from "../NotFoundpage/NotFoundpage";
 
 //경로 2가지
 //nav 바에서 클릭해서 온경우 => popularMovie 보여주기
@@ -48,7 +49,7 @@ import CustomDropdown from "../../components/Movies/CustomDropdown";
  *
  * 필터 기능 만들기
  *
- * 데이터에 해당하는 genre를
+ *
  *
  *
  */
@@ -69,25 +70,6 @@ const MoviePage = () => {
   });
   const { data: genreData } = useMoviesGenresQuery();
 
-  // useEffect(() => {
-  //   if (data && data.results) {
-  //     setDisplayData(data.results);
-
-  //     const newGenreIds = data.results.reduce(
-  //       (acc, it) => {
-  //         it.genre_ids.forEach((genreId) => {
-  //           if (!acc.includes(genreId)) {
-  //             acc.push(genreId);
-  //           }
-  //         });
-  //         return acc;
-  //       },
-  //       [...filterGenreIds]
-  //     );
-
-  //     setFilterGenreIds(newGenreIds);
-  //   }
-  // }, [data]);
   useEffect(() => {
     if (data && data.results) {
       setDisplayData(data.results);
@@ -140,7 +122,7 @@ const MoviePage = () => {
   }
 
   if (isError) {
-    return <Navigate to="/not-found" error={error} replace />;
+    return <NotFoundpage error={error} />;
   }
 
   const showGenre = (genreIdList) => {
